@@ -192,6 +192,14 @@ input[aria-invalid="true"] { border-color: var(--red-400); background: var(--whi
 .complete p { margin-top: 1rem; color: var(--gray-400); }
 .complete .btn { margin-top: 2.5rem; }
 
+.demo-note {
+  margin-top: 1.5rem;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  text-align: center;
+  color: var(--gray-400);
+}
+
 .attribution { padding: 0 1rem 1.5rem; font-size: 0.6875rem; text-align: center; }
 .attribution a { color: hsl(249, 99%, 64%); }
 
