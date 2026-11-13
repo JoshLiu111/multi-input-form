@@ -20,13 +20,13 @@ const rules = {
     ],
   ],
   month: [
-    [(v) => v !== "", "Can't be blank"],
-    [(v) => /^\d{2}$/.test(v), "Wrong format, numbers only"],
+    [(v) => v !== "", "Month can't be blank"],
+    [(v) => /^\d{2}$/.test(v), "Month must be 2 digits"],
     [(v) => /^(0[1-9]|1[0-2])$/.test(v), "Invalid month"],
   ],
   year: [
-    [(v) => v !== "", "Can't be blank"],
-    [(v) => /^\d{2}$/.test(v), "Wrong format, numbers only"],
+    [(v) => v !== "", "Year can't be blank"],
+    [(v) => /^\d{2}$/.test(v), "Year must be 2 digits"],
   ],
   cvc: [
     [(v) => v !== "", "Can't be blank"],
