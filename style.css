@@ -1,0 +1,239 @@
+/* Design tokens */
+:root {
+  --grad: linear-gradient(135deg, hsl(249, 99%, 64%), hsl(278, 94%, 30%));
+  --red-400: hsl(0, 100%, 66%);
+  --white: hsl(0, 100%, 100%);
+  --gray-200: hsl(270, 3%, 87%);
+  --gray-400: hsl(212, 12%, 71%);
+  --purple-950: hsl(278, 68%, 11%);
+  --radius: 0.5rem;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+p, h2, fieldset, legend { margin: 0; padding: 0; }
+fieldset { border: 0; min-width: 0; }
+[hidden] { display: none !important; }
+
+body {
+  min-height: 100vh;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: var(--purple-950);
+  background: var(--white);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ---------- Cards (mobile first) ---------- */
+.cards {
+  position: relative;
+  height: 15rem;
+  background: var(--purple-950) url(./images/bg-main-mobile.png) center / cover;
+}
+
+.card {
+  position: absolute;
+  width: min(17.875rem, 76.27vw);
+  aspect-ratio: 447 / 245;
+  border-radius: var(--radius);
+  background-size: cover;
+  box-shadow: 0 2.5rem 3.75rem hsla(0, 0%, 0%, 0.14);
+  color: var(--white);
+  container-type: inline-size;
+}
+
+/* Center the 375px card group on wider phones / tablets */
+.card--back {
+  top: 2rem;
+  left: calc(50% - min(7.15625rem, 30.53vw));
+  background-image: url(./images/bg-card-back.png);
+}
+.card--front {
+  top: 7.875rem;
+  left: calc(50% - min(10.71875rem, 45.73vw));
+  z-index: 1;
+  background-image: url(./images/bg-card-front.png);
+}
+.card__content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 7.2cqi 7.2cqi 6.3cqi;
+}
+
+/* Text inside the card scales with the card (cqi = 1% of card width) */
+.card__logo { width: 18.8cqi; height: auto; }
+.card__number {
+  margin-top: auto;
+  font-size: 6.3cqi;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+.card__row {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 4.5cqi;
+  font-size: 3.2cqi;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.card__name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-right: 4cqi; }
+.card__cvc {
+  position: absolute;
+  top: 45.5%;
+  right: 12.8cqi;
+  font-size: 3.2cqi;
+  letter-spacing: 0.14em;
+}
+
+/* ---------- Panel: form + complete state ---------- */
+.panel {
+  box-sizing: content-box;
+  max-width: 23.8125rem;
+  margin: 0 auto;
+  padding: 5.75rem 1.5rem 2.75rem;
+}
+
+#card-form { display: grid; gap: 1.25rem; }
+
+.field { display: grid; gap: 0.5625rem; align-content: start; }
+
+label,
+legend {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+legend { margin-bottom: 0.5625rem; white-space: nowrap; }
+
+@media (max-width: 22.5em) {
+  label, legend { font-size: 0.6875rem; letter-spacing: 0.1em; }
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6875rem;
+}
+.exp-inputs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+/* Input with a gradient border on focus: two background layers */
+input {
+  width: 100%;
+  height: 2.8125rem;
+  padding: 0 clamp(0.625rem, 4vw, 1rem);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+  font: inherit;
+  color: var(--purple-950);
+  background: var(--white);
+  outline: none;
+}
+input::placeholder { color: hsla(278, 68%, 11%, 0.25); }
+input:hover,
+input:focus {
+  border-color: transparent;
+  background:
+    linear-gradient(var(--white), var(--white)) padding-box,
+    var(--grad) border-box;
+}
+
+/* Error state: driven by aria-invalid */
+input[aria-invalid="true"] { border-color: var(--red-400); background: var(--white); }
+.error-msg {
+  font-size: 0.75rem;
+  color: var(--red-400);
+}
+
+/* MM / YY: show only the first visible error */
+.field--exp .error-msg:not([hidden]) ~ .error-msg { display: none; }
+
+.btn {
+  width: 100%;
+  height: 3.3125rem;
+  margin-top: 0.5rem;
+  border: 0;
+  border-radius: var(--radius);
+  font: inherit;
+  color: var(--white);
+  background: var(--purple-950);
+  cursor: pointer;
+}
+.btn:hover,
+.btn:focus-visible { background: hsl(278, 50%, 22%); }
+.btn:focus-visible { outline: 2px solid hsl(249, 99%, 64%); outline-offset: 3px; }
+
+.complete {
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  outline: none;
+}
+.complete img { margin-bottom: 2.1875rem; }
+.complete h2 {
+  font-size: 1.75rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+.complete p { margin-top: 1rem; color: var(--gray-400); }
+.complete .btn { margin-top: 2.5rem; }
+
+.attribution { padding: 0 1rem 1.5rem; font-size: 0.6875rem; text-align: center; }
+.attribution a { color: hsl(249, 99%, 64%); }
+
+/* ---------- Desktop ---------- */
+@media (min-width: 64em) {
+  .layout {
+    display: grid;
+    grid-template-columns: 33.5vw 1fr;
+    min-height: 100vh;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2.3125rem;
+    height: auto;
+    padding-left: 11.4vw;
+    background-image: url(./images/bg-main-desktop.png);
+  }
+
+  .card {
+    position: relative;
+    inset: auto;
+    flex-shrink: 0;
+    width: clamp(18rem, 31vw, 27.9375rem);
+  }
+  .card--back { margin-left: 6.5vw; }
+
+  .panel {
+    align-self: center;
+    justify-self: start;
+    width: 23.8125rem;
+    margin: 0 0 0 24.2vw;
+    padding: 2rem 0;
+  }
+
+  .attribution {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 33.5vw;
+  }
+}

@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="./images/favicon-32x32.png"
+    />
+    <title>Frontend Mentor | Interactive card details form</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <main class="layout">
+      <h1 class="sr-only">Add your card details</h1>
+
+      <!-- Live card preview -->
+      <section class="cards" aria-label="Card preview">
+        <div class="card card--front">
+          <div class="card__content">
+            <img
+              class="card__logo"
+              src="./images/card-logo.svg"
+              alt=""
+              width="84"
+              height="47"
+            />
+            <p class="card__number" id="card-number">0000 0000 0000 0000</p>
+            <div class="card__row">
+              <p class="card__name" id="card-name">Jane Appleseed</p>
+              <p class="card__exp">
+                <span id="card-month">00</span>/<span id="card-year">00</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card card--back">
+          <p class="card__cvc" id="card-cvc">000</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <form id="card-form" novalidate>
+          <div class="field">
+            <label for="name">Cardholder Name</label>
+            <input
+              type="text"
+              id="name"
+              name="name"
+              placeholder="e.g. Jane Appleseed"
+              autocomplete="cc-name"
+              maxlength="26"
+              data-preview="card-name"
+              aria-describedby="name-error"
+            />
+            <p class="error-msg" id="name-error" role="alert" hidden></p>
+          </div>
+
+          <div class="field">
+            <label for="number">Card Number</label>
+            <input
+              type="text"
+              id="number"
+              name="number"
+              placeholder="e.g. 1234 5678 9123 0000"
+              autocomplete="cc-number"
+              inputmode="numeric"
+              maxlength="19"
+              data-preview="card-number"
+              aria-describedby="number-error"
+            />
+            <p class="error-msg" id="number-error" role="alert" hidden></p>
+          </div>
+
+          <div class="field-row">
+            <fieldset class="field field--exp">
+              <legend>Exp. Date (MM/YY)</legend>
+              <div class="exp-inputs">
+                <label class="sr-only" for="month">Expiry month</label>
+                <input
+                  type="text"
+                  id="month"
+                  name="month"
+                  placeholder="MM"
+                  autocomplete="cc-exp-month"
+                  inputmode="numeric"
+                  maxlength="2"
+                  data-preview="card-month"
+                  aria-describedby="month-error"
+                />
+                <label class="sr-only" for="year">Expiry year</label>
+                <input
+                  type="text"
+                  id="year"
+                  name="year"
+                  placeholder="YY"
+                  autocomplete="cc-exp-year"
+                  inputmode="numeric"
+                  maxlength="2"
+                  data-preview="card-year"
+                  aria-describedby="year-error"
+                />
+              </div>
+              <p class="error-msg" id="month-error" role="alert" hidden></p>
+              <p class="error-msg" id="year-error" role="alert" hidden></p>
+            </fieldset>
+
+            <div class="field">
+              <label for="cvc">CVC</label>
+              <input
+                type="text"
+                id="cvc"
+                name="cvc"
+                placeholder="e.g. 123"
+                autocomplete="cc-csc"
+                inputmode="numeric"
+                maxlength="3"
+                data-preview="card-cvc"
+                aria-describedby="cvc-error"
+              />
+              <p class="error-msg" id="cvc-error" role="alert" hidden></p>
+            </div>
+          </div>
+
+          <button class="btn" type="submit">Confirm</button>
+        </form>
+
+        <!-- Completed state -->
+        <div class="complete" id="complete" tabindex="-1" hidden>
+          <img src="./images/icon-complete.svg" alt="" width="80" height="80" />
+          <h2>Thank you!</h2>
+          <p>We've added your card details</p>
+          <button class="btn" type="button" id="continue-btn">Continue</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="attribution">
+      Challenge by
+      <a href="https://www.frontendmentor.io?ref=challenge">Frontend Mentor</a>.
+      Coded by <a href="#">Josh</a>.
+    </footer>
+  </body>
+</html>
