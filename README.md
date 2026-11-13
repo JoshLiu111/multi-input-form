@@ -41,8 +41,8 @@ I also added:
 
 ### Links
 
-- Solution URL: [Frontend Mentor solution](TODO)
-- Live Site URL: [TODO](TODO)
+- Solution URL: [Frontend Mentor solution](https://www.frontendmentor.io/solutions/vanilla-javascript---live-card-preview-with-rules-based-validation-IbWWd20ykb)
+- Live Site URL: [multi-input-form.vercel.app](https://multi-input-form.vercel.app/)
 
 ## My process
 
