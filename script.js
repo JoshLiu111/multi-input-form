@@ -72,6 +72,13 @@
 const form = document.getElementById("card-form");
 const completeCtn = document.getElementById("complete");
 
+const previewInputs = document.querySelectorAll("[data-preview]");
+const defaults = {};
+previewInputs.forEach((el) => {
+  const targetEl = document.getElementById(el.dataset.preview);
+  defaults[el.dataset.preview] = targetEl.textContent;
+});
+
 const rules = {
   name: [[(v) => v !== "", "Can't be blank"]],
   number: [
@@ -149,4 +156,10 @@ form.addEventListener("input", (e) => {
   if (input.name === "number") {
     input.value = numberInputFormatter(input.value);
   }
+});
+
+form.addEventListener("input", (e) => {
+  const input = e.target;
+  const previewEl = document.getElementById(input.dataset.preview);
+  previewEl.textContent = input.value.trim() || defaults[input.dataset.preview];
 });
